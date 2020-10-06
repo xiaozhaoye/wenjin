@@ -1,4 +1,4 @@
-
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -7,11 +7,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JTextArea;
 import javax.swing.JFileChooser;
-import java.awt.Toolkit;
 import java.awt.datatransfer.*;
-import java.awt.Font;
-import java.awt.Color;
 import java.io.*;
+import java.util.Calendar;
+import java.util.Date;
 
 public class NoteBookDemo extends JFrame implements ActionListener {
 
@@ -27,6 +26,7 @@ public class NoteBookDemo extends JFrame implements ActionListener {
             new JMenuItem("复制"),//绘制复制按钮
             new JMenuItem("剪切"),//绘制剪切按钮
             new JMenuItem("粘贴"),//绘制粘贴按钮
+            new JMenuItem("时间"),//绘制粘贴按钮
     };
     JTextArea textArea = new JTextArea();
     String fileName = "NoName";     //设置默认文件名
@@ -52,7 +52,7 @@ public class NoteBookDemo extends JFrame implements ActionListener {
         for(int i=0;i<4;i++) //循环4次
         {
             file.add(menuItem[i]); //file下添加4个选项
-            edit.add(menuItem[i+4]);//edit下添加4个选项
+            edit.add(menuItem[i+5]);//edit下添加4个选项
         }
 
         this.getContentPane().add(textArea);//添加文本输入区域
@@ -161,6 +161,10 @@ public class NoteBookDemo extends JFrame implements ActionListener {
             catch(IOException ex){ }
             textArea.replaceRange(text,
                     textArea.getSelectionStart(),textArea.getSelectionEnd());
+        }
+        else if(eventSource == menuItem[8]) //设置时间事件
+        {
+            textArea.setText(new Date().toString());
         }
 
     }
